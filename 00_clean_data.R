@@ -1,9 +1,22 @@
+# This script cleans and stacks the raw data files from Yale athletics.
+
+#==================================#
+#=== load in libraries and data ===#
+#==================================#
+
 library(readxl)
-library(tidyverse)
 library(stringr)
 library(plyr)
+library(dplyr)
+library(tidyverse)
+
+# read in raw files
 catapult_data <- read_xlsx("rawdata/Yale Football Catapult Raw Data 2023.xlsx")
 jump_data <- read.csv("rawdata/Football_-01_20_23-11_05_23-_Countermovement_Jump.csv")
+
+#===================#
+#=== clean data  ===#
+#===================#
 
 jump_data <- jump_data %>% 
   mutate(Name = trimws(Name)) %>%
@@ -48,10 +61,14 @@ names(catapult_data) <- gsub("[.]$", "", names(catapult_data))
 names(jump_data) <- gsub("[.][.]", ".", names(jump_data))
 
 catapult_data <- catapult_data %>% 
-  rename(Name = Player.Name)
+  dplyr::rename(Name = Player.Name)
 
 jump_data[,10:88] <- jump_data[,10:88] %>% 
   mutate_if(is.character, as.numeric)
+
+#==========================#
+#=== reshape/stack data ===#
+#==========================#
 
 jump_data_longer <- jump_data %>%
   dplyr::select(-c(TestId, Excluded, Segment, Type, Time)) %>% 
@@ -63,10 +80,20 @@ catapult_data_longer <- catapult_data %>%
 
 full_data <- rbind.fill(jump_data_longer, catapult_data_longer)
 
+#==============#
+#=== export ===#
+#==============#
 
-position_index <- full_data %>% 
-  group_by(Name) %>% 
-  summarise(Position = toString(unique(Position)))
+# export raw files to app and to processed data folders
+saveRDS(full_data, "/processed_data/stacked_athletics_data.rds")
+saveRDS(full_data, "/yale_athletics_app/data/stacked_athletics_data.rds")
+#=======================#
+#=== deprecated code ===#
+#=======================#
+
+# position_index <- full_data %>% 
+#   group_by(Name) %>% 
+#   summarise(Position = toString(unique(Position)))
 
 #We will now merge the data separately for the data where there is only the last name in catapult_data and where there is a space. We will then rbind these together
 #St. Aubym is the one last name with a space in it so we have to single it out
