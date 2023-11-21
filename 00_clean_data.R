@@ -85,8 +85,8 @@ full_data <- rbind.fill(jump_data_longer, catapult_data_longer)
 #==============#
 
 # export raw files to app and to processed data folders
-saveRDS(full_data, "/processed_data/stacked_athletics_data.rds")
-saveRDS(full_data, "/yale_athletics_app/data/stacked_athletics_data.rds")
+saveRDS(full_data, "processed_data/stacked_athletics_data.rds")
+saveRDS(full_data, "yale_athletics_app/data/stacked_athletics_data.rds")
 #=======================#
 #=== deprecated code ===#
 #=======================#
