@@ -1,6 +1,8 @@
 library(shiny)
 library(bslib)
 library(DT)
+library(dplyr)
+library(tidyverse)
 
 # define ui
 fluidPage(
