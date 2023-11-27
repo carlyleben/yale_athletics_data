@@ -1,2 +1,10 @@
 Questions about our data:
 - How do we differentiate between the two Anderson Jrs in the catapult data?
+
+Carly notes for Matthew:
+Potential next steps:
+-Adding colors to the table values like in the video Brian showed
+-commenting the data cleaning code (done)
+-investigating why some athletes have position NA, “”, or “ “ (done)
+-adding the weird valueboxes in the app in Brian’s video??? not sure what those do?
+-keeping the session time/name or creating some sort of session ID? Right now sessions are not unique by name/date/position which makes the tables look really wonky in the shiny 

@@ -13,7 +13,7 @@ library(shiny)
 function(input, output, session) {
   
     # load in data so it can be accessed in UI
-    in_athlete_data <- readRDS("data/stacked_athletics_data.rds")
+    in_athlete_data <- readRDS("/Users/matthewmeyers/Downloads/yale_athletics_data/yale_athletics_app/data/stacked_athletics_data.rds")
 
     # reactively filter data
     filtered_data <- reactive({
