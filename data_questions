@@ -7,4 +7,4 @@ Potential next steps:
 -commenting the data cleaning code (done)
 -investigating why some athletes have position NA, “”, or “ “ (done)
 -adding the weird valueboxes in the app in Brian’s video??? not sure what those do?
--keeping the session time/name or creating some sort of session ID? Right now sessions are not unique by name/date/position which makes the tables look really wonky in the shiny 
+-keeping the session time/name or creating some sort of session ID? Right now sessions are not unique by name/date/position which makes the tables look really wonky in the shiny  (done)
